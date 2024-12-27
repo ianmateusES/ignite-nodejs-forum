@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgres:17.2-alpine3.21
+    container_name: nest-clean-pg
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: nest-clean
+      PGDATA: /data/postgres
+    volumes:
+      - ./data/pg:/data/postgres
+
+  cache:
+    image: redis:7.4.1-alpine3.21
+    container_name: nest-clean-cache
+    ports:
+      - 6379:6379
+    volumes:
+      - ./data/redis:/data
